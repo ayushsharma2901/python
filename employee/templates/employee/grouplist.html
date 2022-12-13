@@ -1,0 +1,38 @@
+<!-- ./employee/templates/employee/list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Employee List</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Group Information</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Group Name</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for g in groups %}
+                <tr>
+                    <th scope="row">{{ g.name }}</th>
+                    
+                    <td>
+                        <a style="margin-right: 30px;"href="{% url 'edit-group' g.id %}" >Edit</a>
+                        <a href="{% url 'delete-group' g.id %}" >Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'create-group' %}"><button type="button" class="btn btn-primary">Add New Info</button></a>
+    </div>
+{% endblock content %}

@@ -1,0 +1,44 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Edit</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Edit Group Information</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">User Name</th>
+                
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+                <tr>
+                    <th scope="row">{{ u.username }}</th>
+                    
+                    <td>
+                       
+                        <a href="{% url 'useredit-group' u.id %}" >Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <form action="" method="POST">
+        <!--<select id="ddlAllUsers" name="AllUsers">
+            <option value="%">---------</option>
+            {% for entry in allusers %} 
+             <option value="{{ entry.id }}">{{ entry.username }}</option>
+            {% endfor %}
+        </select>-->
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success">
+    </form>
+{% endblock content %}

@@ -1,0 +1,42 @@
+<!-- ./employee/templates/employee/list.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}
+    <title>Employee List</title>
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">User Information</h1>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">UserName</th>
+                <th scope="col">Email</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for u in users %}
+                <tr>
+                    <th scope="row">{{ u.username }}</th>
+                    <td>{{ u.email }}</td>
+                    <td>{{ u.first_name }}</td>
+                    <td>{{ u.last_name}}</td>
+                    <td>
+                        <a style="margin-right: 30px;"href="{% url 'edit-user' u.id %}" >Edit</a>
+                        <a href="{% url 'delete-user' u.id %}" >Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'create-user' %}"><button type="button" class="btn btn-primary">Add New Info</button></a>
+    </div>
+{% endblock content %}
